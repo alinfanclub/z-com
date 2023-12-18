@@ -1,19 +1,39 @@
 "use client";
 
-import { ChangeEventHandler, FormEventHandler, useRef, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./postForm.module.css";
+import { EditorState } from "draft-js";
+import "draft-js/dist/Draft.css";
+import dynamic from "next/dynamic";
+
+export const Editor = dynamic(
+  () => import("draft-js").then((mod) => mod.Editor),
+  {
+    ssr: false,
+  }
+);
 
 export default function PostForm() {
   const imageRef = useRef<HTMLInputElement>(null);
-  const [content, setContent] = useState("");
+
+  const [content, setContent] = useState<EditorState>(() =>
+    EditorState.createEmpty()
+  );
+
   const me = {
     id: "zerohch0",
     image: "/5Udwvqim.jpg",
   };
 
-  const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
-    setContent(e.target.value);
-  };
+  // const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+  //   setContent(e.target.value);
+  // };
 
   const onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
@@ -31,10 +51,16 @@ export default function PostForm() {
         </div>
       </div>
       <div className={styles.postInputSection}>
-        <textarea
+        {/* <textarea
           value={content}
           onChange={onChange}
           placeholder="무슨 일이 일어나고 있나요?"
+        /> */}
+        <Editor
+          editorState={content}
+          onChange={setContent}
+          placeholder="무슨 일이 일어나고 있나요?"
+          editorKey="editor"
         />
         <div className={styles.postButtonSection}>
           <div className={styles.footerButtons}>
