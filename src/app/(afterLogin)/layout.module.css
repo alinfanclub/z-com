@@ -87,11 +87,15 @@
 
 .main {
   width: 600px;
-  height: 200dvh;
+  height: 300dvh;
 }
+
 .rightSection {
   width: 350px;
-  height: 100%;
+  height: fit-content;
+  position: sticky;
+  top: 0;
+  background: tomato;
 }
 
 .search {

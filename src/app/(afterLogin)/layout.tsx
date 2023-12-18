@@ -6,7 +6,6 @@ import NavMenu from "./_component/NavMenu";
 import LogoutButton from "./_component/LogoutButton";
 import FollowRecomend from "./_component/FollowRecomend";
 import TrendSection from "./_component/TrendSection";
-import { inherits } from "util";
 
 type Props = {
   children: React.ReactNode;
