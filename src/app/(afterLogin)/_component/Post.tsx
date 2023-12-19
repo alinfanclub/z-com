@@ -4,11 +4,17 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
 import ActionButtons from "./ActionButtons";
+import { Post } from "@/model/Post";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
-export default function Post() {
+interface Props {
+  noImage?: boolean;
+  post?: Post;
+}
+
+export default function Post({ noImage, post }: Props) {
   const target = {
     User: {
       id: "elonmusk",
