@@ -79,10 +79,11 @@
 }
 
 .rightSectionInner {
-  height: 100%;
+  height: auto;
   width: 990px;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .main {
@@ -93,9 +94,10 @@
 .rightSection {
   width: 350px;
   height: fit-content;
+  position: relative;
   position: sticky;
-  top: 0;
-  background: tomato;
+  top: -450px;
+  align-self: flex-start;
 }
 
 .search {
